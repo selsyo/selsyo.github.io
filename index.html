@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selsa Evani — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:       #FFFFFF;
+    --navy:        #1E293B;
+    --teal:        #0F766E;
+    --amber:       #D97706;
+    --navy-light:  #2D3F55;
+    --teal-light:  #CCECE9;
+    --teal-mid:    #0D9488;
+    --amber-light: #FEF3C7;
+    --slate:       #64748B;
+    --slate-light: #94A3B8;
+    --surface:     #F8FAFC;
+    --border:      rgba(30,41,59,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--slate); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ═══════ HERO — REDESIGNED ═══════ */
+  .hero {
+    min-height: 100vh;
+    padding-top: 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  /* LEFT — editorial portrait panel */
+  .hero-portrait-panel {
+    position: relative;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    min-height: calc(100vh - 72px);
+  }
+  .hero-portrait-panel::before {
+    content: '';
+    position: absolute; top: -80px; left: -80px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(15,118,110,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-portrait-panel::after {
+    content: '';
+    position: absolute; bottom: 60px; right: -60px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(217,119,6,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-rule {
+    position: absolute; top: 0; bottom: 0; left: 52px; width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(217,119,6,0.35) 30%, rgba(217,119,6,0.35) 70%, transparent);
+    pointer-events: none;
+  }
+  .hero-portrait-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    opacity: 0.55;
+    mix-blend-mode: luminosity;
+  }
+  .hero-portrait-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(30,41,59,0.08) 0%,
+      rgba(30,41,59,0.0) 40%,
+      rgba(30,41,59,0.72) 75%,
+      rgba(30,41,59,0.95) 100%
+    );
+    pointer-events: none;
+  }
+  .hero-portrait-caption {
+    position: relative; z-index: 2;
+    padding: 0 3rem 2.5rem 3rem;
+  }
+  .hpc-eyebrow {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hpc-eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--amber); flex-shrink: 0;
+  }
+  .hpc-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+    font-weight: 600; line-height: 1.05; color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .hpc-name em { font-style: italic; color: var(--teal-light); }
+  .hpc-role { font-size: 0.82rem; color: rgba(255,255,255,0.45); font-weight: 300; letter-spacing: 0.04em; }
+
+  /* RIGHT — content panel */
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 4rem 4.5rem;
+    position: relative; background: var(--white);
+  }
+  .hero-content::before {
+    content: ''; position: absolute;
+    top: 20%; bottom: 20%; left: 0; width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--teal) 30%, var(--teal) 70%, transparent);
+    opacity: 0.15;
+  }
+  .hero-status-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(15,118,110,0.25); border-radius: 100px;
+    font-size: 0.72rem; font-weight: 500; color: var(--teal); letter-spacing: 0.06em;
+    margin-bottom: 2.25rem; width: fit-content;
+    background: rgba(15,118,110,0.04);
+  }
+  .hero-status-badge::before {
+    content: ''; display: block;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--teal);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.75); }
+  }
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+    font-weight: 600; line-height: 1.18; color: var(--navy);
+    margin-bottom: 1.5rem; max-width: 440px;
+  }
+  .hero-headline em { font-style: italic; color: var(--teal); }
+  .hero-bio {
+    font-size: 0.93rem; color: var(--slate); line-height: 1.8;
+    max-width: 400px; margin-bottom: 2.25rem;
+  }
+
+  /* Metrics strip */
+  .hero-metrics-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    margin-bottom: 2.5rem; max-width: 400px;
+  }
+  .hm-item {
+    background: var(--surface); padding: 0.9rem 1rem; transition: background 0.2s;
+  }
+  .hm-item:hover { background: var(--teal-light); }
+  .hm-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 0.2rem;
+  }
+  .hm-val span { font-size: 0.75rem; color: var(--amber); font-weight: 500; }
+  .hm-lbl { font-size: 0.68rem; color: var(--slate); line-height: 1.3; }
+
+  /* Logos block */
+  .hero-logos-block { margin-bottom: 2.5rem; max-width: 400px; }
+  .hero-logos-label {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--slate-light);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-logos-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .hero-logos-row {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+  }
+  .logo-pill {
+    display: flex; align-items: center; gap: 0.45rem;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--border); border-radius: 6px; background: var(--white);
+    cursor: default; transition: border-color 0.2s, background 0.2s;
+    margin-right: 0.5rem; margin-bottom: 0.5rem; flex-shrink: 0;
+  }
+  .logo-pill:hover { border-color: rgba(15,118,110,0.3); background: var(--teal-light); }
+  .logo-icon {
+    width: 20px; height: 20px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; overflow: hidden;
+  }
+  .logo-name { font-size: 0.72rem; font-weight: 500; color: var(--slate); letter-spacing: 0.01em; white-space: nowrap; }
+  .logo-np .logo-icon { background: #C8102E; }
+  .logo-mj .logo-icon { background: #4A3728; }
+  .logo-ny .logo-icon { background: #1B5E3B; }
+  .logo-ui .logo-icon { background: #003D7C; }
+
+  /* CTA row */
+  .hero-cta-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .hero-cta-primary {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--navy); color: var(--white);
+    padding: 0.85rem 1.75rem; border-radius: 5px;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta-primary:hover { background: var(--navy-light); transform: translateY(-1px); }
+  .hero-cta-secondary {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    color: var(--teal); font-size: 0.82rem; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.04em; border-bottom: 1px solid rgba(15,118,110,0.3); padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-cta-secondary:hover { color: var(--teal-mid); border-color: var(--teal-mid); }
+  .hero-index-mark {
+    position: absolute; top: 2.5rem; right: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem; font-weight: 600; color: var(--teal);
+    opacity: 0.04; line-height: 1; user-select: none; pointer-events: none;
+  }
+
+  /* Entrance animations */
+  .hero-portrait-panel,
+  .hero-content { animation: heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-portrait-panel { animation-delay: 0.05s; }
+  .hero-content { animation-delay: 0.18s; }
+  .hero-status-badge { animation: heroFadeUp 0.7s 0.3s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-headline { animation: heroFadeUp 0.7s 0.42s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-bio { animation: heroFadeUp 0.7s 0.52s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-metrics-strip { animation: heroFadeUp 0.7s 0.60s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-logos-block { animation: heroFadeUp 0.7s 0.68s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-cta-row { animation: heroFadeUp 0.7s 0.76s cubic-bezier(0.22,1,0.36,1) both; }
+  .hpc-eyebrow { animation: heroFadeUp 0.7s 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+  .hpc-name { animation: heroFadeUp 0.7s 0.65s cubic-bezier(0.22,1,0.36,1) both; }
+  .hpc-role { animation: heroFadeUp 0.7s 0.72s cubic-bezier(0.22,1,0.36,1) both; }
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hero responsive */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-portrait-panel { min-height: 360px; }
+    .hero-portrait-img { opacity: 0.5; }
+    .hero-portrait-caption { padding: 0 2rem 2rem 2rem; }
+    .hero-content { padding: 3rem 2rem 3.5rem; }
+    .hero-content::before { display: none; }
+    .hero-metrics-strip { max-width: 100%; }
+    .hero-logos-block { max-width: 100%; }
+  }
+  @media (max-width: 480px) {
+    .hero-metrics-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ═══════ ALL EXISTING SECTIONS ═══════ */
+  section { padding: 6rem 4rem; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; color: var(--amber); text-transform: uppercase; margin-bottom: 1rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
+  .section-sub { font-size: 0.95rem; color: var(--slate); max-width: 520px; line-height: 1.7; }
+  .divider { width: 40px; height: 3px; background: var(--teal); margin: 1.5rem 0 3rem; border-radius: 2px; }
+
+  #work { background: var(--surface); }
+  .work-header { max-width: 1100px; margin: 0 auto 3.5rem; }
+  .cases { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+
+  .case { background: var(--white); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+  .case:hover { border-color: var(--teal); box-shadow: 0 2px 12px rgba(15,118,110,0.08); }
+  .case-header-row { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 1.5rem; padding: 1.75rem 2rem; cursor: pointer; }
+  .case-num { background: var(--teal-light); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 1.1rem; font-weight: 600; color: var(--teal); font-family: 'Playfair Display', serif; }
+  .case-info {}
+  .case-title-text { font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.2rem; }
+  .case-org { font-size: 0.82rem; color: var(--slate); }
+  .case-preview-metrics { display: flex; gap: 1.5rem; align-items: center; }
+  .preview-metric { text-align: right; }
+  .preview-val { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--amber); }
+  .preview-lbl { font-size: 0.7rem; color: var(--slate); }
+  .case-toggle { width: 28px; height: 28px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--slate); transition: transform 0.25s, background 0.2s; margin-left: 1rem; flex-shrink: 0; }
+  .case.open .case-toggle { transform: rotate(45deg); background: var(--teal); color: var(--white); border-color: var(--teal); }
+  .case-body { display: none; border-top: 1px solid var(--border); padding: 2rem; background: var(--white); }
+  .case-body.open { display: block; }
+  .cb-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 2rem; border-radius: 6px; overflow: hidden; }
+  .cb-metric { background: var(--surface); padding: 1.25rem 1.5rem; }
+  .cb-metric-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; }
+  .cb-metric-lbl { font-size: 0.75rem; color: var(--slate); line-height: 1.35; }
+  .cb-star { display: grid; grid-template-columns: 80px 1fr; gap: 0.75rem 1.5rem; margin-bottom: 2rem; }
+  .cb-star-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: var(--teal); text-transform: uppercase; padding-top: 2px; }
+  .cb-star-text { font-size: 0.88rem; color: var(--navy); line-height: 1.7; opacity: 0.85; }
+  .cb-result { background: var(--teal-light); padding: 1.25rem 1.5rem; font-size: 0.88rem; color: var(--navy); line-height: 1.7; border-left: 3px solid var(--teal); border-radius: 0 4px 4px 0; }
+  .cb-image-box { margin-top: 2rem; }
+  .cb-image-box img { display: block; width: 100%; height: auto; border-radius: 4px; object-fit: cover; }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(15,23,42,0.75); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { background: var(--white); border-radius: 10px; max-width: 680px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 24px 60px rgba(15,23,42,0.3); animation: modalIn 0.22s ease; }
+  @keyframes modalIn { from { opacity:0; transform: scale(0.96) translateY(10px); } to { opacity:1; transform: scale(1) translateY(0); } }
+  .modal-close { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); cursor: pointer; font-size: 1.1rem; color: var(--navy); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .modal-close:hover { background: var(--teal-light); color: var(--teal); }
+  .modal-preview { width: 100%; max-height: 360px; object-fit: contain; background: var(--surface); display: flex; align-items: center; justify-content: center; border-radius: 10px 10px 0 0; overflow: hidden; }
+  .modal-preview img { width: 100%; max-height: 360px; object-fit: contain; display: block; }
+  .modal-preview-placeholder { width: 100%; height: 240px; background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border-radius: 10px 10px 0 0; }
+  .modal-preview-placeholder svg { width: 48px; height: 48px; opacity: 0.35; color: var(--teal); }
+  .modal-preview-placeholder p { font-size: 0.85rem; color: var(--slate); }
+  .modal-info { padding: 1.5rem; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+  .modal-desc { font-size: 0.85rem; color: var(--slate); line-height: 1.6; margin-bottom: 1.25rem; }
+  .modal-note { font-size: 0.78rem; color: var(--teal); background: var(--teal-light); border-left: 2px solid var(--teal); padding: 0.6rem 0.85rem; margin-bottom: 1.25rem; line-height: 1.5; border-radius: 0 4px 4px 0; }
+  .modal-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .modal-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border-radius: 4px; font-size: 0.82rem; font-weight: 500; cursor: pointer; text-decoration: none; border: none; transition: all 0.2s; }
+  .modal-btn-primary { background: var(--teal); color: var(--white); }
+  .modal-btn-primary:hover { background: var(--teal-mid); }
+  .modal-btn-secondary { background: var(--surface); color: var(--navy); border: 1px solid var(--border); }
+  .modal-btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  #about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; background: var(--white); }
+  .about-left {}
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; border-radius: 6px; overflow: hidden; }
+  .skill-item { background: var(--surface); padding: 1.25rem; }
+  .skill-name { font-size: 0.88rem; font-weight: 500; color: var(--navy); margin-bottom: 0.25rem; }
+  .skill-desc { font-size: 0.78rem; color: var(--slate); line-height: 1.4; }
+  .about-right {}
+  .timeline { position: relative; padding-left: 1.5rem; border-left: 2px solid var(--teal-light); }
+  .tl-item { margin-bottom: 2rem; position: relative; }
+  .tl-dot { position: absolute; left: -1.95rem; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); border: 2px solid var(--white); outline: 1px solid var(--teal); }
+  .tl-period { font-size: 0.72rem; color: var(--amber); font-weight: 500; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
+  .tl-role { font-size: 0.92rem; font-weight: 500; color: var(--navy); margin-bottom: 0.15rem; }
+  .tl-org { font-size: 0.82rem; color: var(--slate); }
+
+  #contact { background: var(--navy); color: var(--white); text-align: center; }
+  #contact .section-eyebrow { color: var(--amber); }
+  #contact .section-title { color: var(--white); }
+  #contact .divider { background: var(--teal); margin-left: auto; margin-right: auto; }
+  .contact-sub { font-size: 0.95rem; color: rgba(255,255,255,0.55); max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .contact-cta { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid var(--teal); color: var(--white); background: var(--teal); padding: 0.85rem 2rem; border-radius: 4px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; transition: all 0.2s; }
+  .contact-cta:hover { background: var(--teal-mid); border-color: var(--teal-mid); }
+  .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 3rem; }
+  .contact-link { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .contact-link:hover { color: var(--amber); }
+
+  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    section { padding: 4rem 2rem; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .cb-metrics { grid-template-columns: 1fr 1fr; }
+    .case-preview-metrics { display: none; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Selsa Evani</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════ HERO — REDESIGNED ═══════ -->
+<section class="hero">
+
+  <!-- LEFT — Editorial portrait panel -->
+  <div class="hero-portrait-panel">
+    <div class="hero-rule"></div>
+    <img class="hero-portrait-img" src="https://selsyo.github.io/photocloseup11.jpg" alt="Selsa Evani">
+    <div class="hero-portrait-overlay"></div>
+    <div class="hero-portrait-caption">
+      <p class="hpc-eyebrow">Strategic Growth &amp; Performance Marketing</p>
+      <h1 class="hpc-name">Selsa <em>Evani</em></h1>
+      <p class="hpc-role">Meta Ads · Commercial Strategy · Partnerships · Campaign Execution</p>
+    </div>
+  </div>
+
+  <!-- RIGHT — Content panel -->
+  <div class="hero-content">
+    <div class="hero-index-mark">SE</div>
+
+    <div class="hero-status-badge">Available for new opportunities</div>
+
+    <h2 class="hero-headline">
+      Building growth that<br>
+      <em>drives measurable</em><br>
+      business outcomes
+    </h2>
+
+    <p class="hero-bio">With nearly 5 years of work experience, I build growth campaigns that drive measurable business outcomes through campaign optimization, stakeholder engagement, and growth-focused digital acquisition.</p>
+
+    <!-- Impact metrics strip -->
+    <div class="hero-metrics-strip">
+      <div class="hm-item">
+        <div class="hm-val">IDR <span>34B</span></div>
+        <div class="hm-lbl">sell-out across 200 stores</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-val">+45<span>%</span></div>
+        <div class="hm-lbl">sell-out growth delivered</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-val">USD <span>0.47</span></div>
+        <div class="hm-lbl">Meta Ads cost per lead</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-val">5M<span>+</span></div>
+        <div class="hm-lbl">creator campaign impressions</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-val">IDR <span>1B+</span></div>
+        <div class="hm-lbl">sponsorships secured</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-val">100<span>+</span></div>
+        <div class="hm-lbl">KOLs onboarded</div>
+      </div>
+    </div>
+
+    <!-- Professional Experience logos -->
+    <div class="hero-logos-block">
+      <p class="hero-logos-label">Professional Experience</p>
+      <div class="hero-logos-row">
+
+        <div class="logo-pill logo-np">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="7" fill="white" opacity="0.9"/>
+              <circle cx="12" cy="12" r="4" fill="#C8102E"/>
+            </svg>
+          </div>
+          <span class="logo-name">Nippon Paint</span>
+        </div>
+
+        <div class="logo-pill logo-mj">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="8" width="14" height="10" rx="2" fill="white" opacity="0.85"/>
+              <path d="M8 8V6a4 4 0 018 0v2" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+            </svg>
+          </div>
+          <span class="logo-name">Mom &amp; Jo</span>
+        </div>
+
+        <div class="logo-pill logo-ny">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4L4 8v8l8 4 8-4V8L12 4z" fill="white" opacity="0.85"/>
+              <path d="M12 4v16M4 8l8 4 8-4" stroke="#1B5E3B" stroke-width="1" opacity="0.5"/>
+            </svg>
+          </div>
+          <span class="logo-name">Neyen Consulting</span>
+        </div>
+
+        <div class="logo-pill logo-ui">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 18V10l8-6 8 6v8H4z" fill="white" opacity="0.85"/>
+              <rect x="9" y="13" width="6" height="5" fill="#003D7C" opacity="0.6"/>
+            </svg>
+          </div>
+          <span class="logo-name">Universitas Indonesia</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="hero-cta-row">
+      <a href="#work" class="hero-cta-primary">View case studies →</a>
+      <a href="#contact" class="hero-cta-secondary">Get in touch ↗</a>
+    </div>
+
+  </div>
+</section>
+<!-- ═══════ END HERO ═══════ -->
+
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-header fade-in">
+    <p class="section-eyebrow">Selected work</p>
+    <h2 class="section-title">Case studies</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Selected projects across commercial growth, partnership development, and stakeholder engagement.</p>
+  </div>
+  <div class="cases">
+
+    <div class="case fade-in" id="case1">
+      <div class="case-header-row" onclick="toggleCase('case1')">
+        <div class="case-num">01</div>
+        <div class="case-info">
+          <div class="case-title-text">Driving workshop growth through stakeholder engagement &amp; digital campaigns</div>
+          <div class="case-org">Neyen Consulting · Sustainability Solution Specialist</div>
+        </div>
+        <div class="case-preview-metrics">
+          <div class="preview-metric"><div class="preview-val">USD 0.47</div><div class="preview-lbl">cost per lead</div></div>
+          <div class="preview-metric"><div class="preview-val">50+</div><div class="preview-lbl">qualified leads</div></div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-body" id="case1-body">
+        <div class="cb-metrics">
+          <div class="cb-metric"><div class="cb-metric-val">USD 0.47</div><div class="cb-metric-lbl">Meta Ads cost per lead form</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">USD 0.11</div><div class="cb-metric-lbl">cost per traffic click</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">50+</div><div class="cb-metric-lbl">qualified business leads</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">400+</div><div class="cb-metric-lbl">workshop participants</div></div>
+        </div>
+        <div class="cb-star">
+          <span class="cb-star-label">Situation</span>
+          <span class="cb-star-text">Industry stakeholders needed structured executive forums to align business priorities, regulatory developments, and cross-sector collaboration initiatives.</span>
+          <span class="cb-star-label">Task</span>
+          <span class="cb-star-text">Led executive workshops and managed stakeholder engagement across government institutions, SOEs, and international corporate partners from Europe and the United States, while driving digital campaign execution and Meta Ads performance for workshop promotion.</span>
+          <span class="cb-star-label">Action</span>
+          <span class="cb-star-text">Managed end-to-end workshop campaigns including stakeholder coordination, Meta Ads execution, audience targeting, and campaign optimization. Developed promotional flyers, educational materials, and post-event recap videos to support workshop acquisition campaigns and increase engagement across professional audiences.</span>
+          <span class="cb-star-label">Result</span>
+          <div class="cb-result">Delivered 20 technical workshops and 2 international executive roundtables within 8 months, engaging 400+ participants and generating 50+ qualified business leads. Achieved Meta Ads acquisition costs as low as USD 0.47 per lead form submission and USD 0.11 per traffic click through optimized targeting and campaign execution.</div>
+        </div>
+        <div class="cb-image-box"><img src="https://selsyo.github.io/CASE-1.jpeg" alt="case 1"></div>
+      </div>
+    </div>
+
+    <div class="case fade-in" id="case2">
+      <div class="case-header-row" onclick="toggleCase('case2')">
+        <div class="case-num">02</div>
+        <div class="case-info">
+          <div class="case-title-text">Building a 100+ creator network for a niche industrial brand</div>
+          <div class="case-org">Nippon Paint Indonesia · Marketing Executive</div>
+        </div>
+        <div class="case-preview-metrics">
+          <div class="preview-metric"><div class="preview-val">100+</div><div class="preview-lbl">KOLs onboarded</div></div>
+          <div class="preview-metric"><div class="preview-val">5M+</div><div class="preview-lbl">impressions generated</div></div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-body" id="case2-body">
+        <div class="cb-metrics">
+          <div class="cb-metric"><div class="cb-metric-val">100+</div><div class="cb-metric-lbl">KOLs onboarded (nano to macro)</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">5M+</div><div class="cb-metric-lbl">total impressions generated</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">4</div><div class="cb-metric-lbl">months to build the network</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">IDR 0</div><div class="cb-metric-lbl">cash spend — barter model only</div></div>
+        </div>
+        <div class="cb-star">
+          <span class="cb-star-label">Situation</span>
+          <span class="cb-star-text">Nippon Paint needed a scalable digital awareness strategy that could expand creator partnerships without relying on large media spending.</span>
+          <span class="cb-star-label">Task</span>
+          <span class="cb-star-text">Build and manage a creator partnership network across Instagram, TikTok, and YouTube using a fully barter-based collaboration model.</span>
+          <span class="cb-star-label">Action</span>
+          <span class="cb-star-text">Built and managed a network of 100+ creators across TikTok, Instagram, and YouTube by developing barter-based partnerships, coordinating campaign execution, and monitoring cross-platform performance.</span>
+          <span class="cb-star-label">Result</span>
+          <div class="cb-result">Built a 100+ creator network across Instagram, TikTok, and YouTube within 4 months, generating more than 5 million impressions through a fully barter-based collaboration model with zero media spend.</div>
+        </div>
+        <div class="cb-image-box"><img src="https://selsyo.github.io/CASE-2.jpeg" alt="case 2"></div>
+      </div>
+    </div>
+
+    <div class="case fade-in" id="case3">
+      <div class="case-header-row" onclick="toggleCase('case3')">
+        <div class="case-num">03</div>
+        <div class="case-info">
+          <div class="case-title-text">Scaling a national BTL loyalty program across 200 stores</div>
+          <div class="case-org">Nippon Paint Indonesia · Senior Marketing Executive</div>
+        </div>
+        <div class="case-preview-metrics">
+          <div class="preview-metric"><div class="preview-val">IDR 34B</div><div class="preview-lbl">total sell-out</div></div>
+          <div class="preview-metric"><div class="preview-val">45%</div><div class="preview-lbl">sell-out growth</div></div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-body" id="case3-body">
+        <div class="cb-metrics">
+          <div class="cb-metric"><div class="cb-metric-val">IDR 34B</div><div class="cb-metric-lbl">sell-out across 200 stores</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">+45%</div><div class="cb-metric-lbl">sell-out growth delivered</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">+7%</div><div class="cb-metric-lbl">overall sell-in uplift</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">3</div><div class="cb-metric-lbl">regions: Java, Sumatra, Kalimantan</div></div>
+        </div>
+        <div class="cb-star">
+          <span class="cb-star-label">Situation</span>
+          <span class="cb-star-text">Nippon Paint needed a scalable BTL strategy to strengthen sell-out performance across multiple regions.</span>
+          <span class="cb-star-label">Task</span>
+          <span class="cb-star-text">Launch and validate a pilot loyalty program in Jakarta before scaling the initiative nationally to improve sell-out performance.</span>
+          <span class="cb-star-label">Action</span>
+          <span class="cb-star-text">Led a pilot loyalty program across 6 stores, collaborated with developers on a web-based reporting system, and scaled the campaign across 200 stores in Java, Sumatra, and Kalimantan based on pilot performance insights.</span>
+          <span class="cb-star-label">Result</span>
+          <div class="cb-result">Generated IDR 34B in sell-out revenue across 200 participating stores, driving 45% sell-out growth and a 7% overall uplift in store performance. Recognized with the Best Player BTL Award for outstanding commercial impact.</div>
+        </div>
+        <div class="cb-image-box"><img src="https://selsyo.github.io/CASE-3.jpeg" alt="case 3"></div>
+      </div>
+    </div>
+
+    <div class="case fade-in" id="case4">
+      <div class="case-header-row" onclick="toggleCase('case4')">
+        <div class="case-num">04</div>
+        <div class="case-info">
+          <div class="case-title-text">Building a partnership-led event strategy with IDR 1B+ sponsorship value</div>
+          <div class="case-org">PT Mom &amp; Jo · Marketing Branding Supervisor</div>
+        </div>
+        <div class="case-preview-metrics">
+          <div class="preview-metric"><div class="preview-val">IDR 1B+</div><div class="preview-lbl">sponsorships secured</div></div>
+          <div class="preview-metric"><div class="preview-val">90%</div><div class="preview-lbl">sales conversion</div></div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-body" id="case4-body">
+        <div class="cb-metrics">
+          <div class="cb-metric"><div class="cb-metric-val">IDR 1B+</div><div class="cb-metric-lbl">total sponsorship value</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">20+</div><div class="cb-metric-lbl">brand partners onboarded</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">IDR 300M+</div><div class="cb-metric-lbl">max value per partner</div></div>
+          <div class="cb-metric"><div class="cb-metric-val">90%</div><div class="cb-metric-lbl">direct sales conversion rate</div></div>
+        </div>
+        <div class="cb-star">
+          <span class="cb-star-label">Situation</span>
+          <span class="cb-star-text">Mom &amp; Jo needed to increase brand visibility and sales performance across 21 branches while operating with limited marketing budgets.</span>
+          <span class="cb-star-label">Task</span>
+          <span class="cb-star-text">Develop a scalable partnership-driven event model capable of generating both sponsorship value and direct sales conversion.</span>
+          <span class="cb-star-label">Action</span>
+          <span class="cb-star-text">Developed a partnership-funded event model, secured collaborations with 20+ brand partners, led cross-functional campaign execution, and optimized performance across 21 branches using campaign data insights.</span>
+          <span class="cb-star-label">Result</span>
+          <div class="cb-result">Secured over IDR 1B in sponsorship value from 20+ brand partners and executed 20+ events with a 90% direct sales conversion rate, creating a highly cost-efficient growth model across 21 branches.</div>
+        </div>
+        <div class="cb-image-box"><img src="https://selsyo.github.io/CASE-4.jpeg" alt="case 4"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left fade-in">
+    <p class="section-eyebrow">About</p>
+    <h2 class="section-title">Driving growth through strategy, partnerships &amp; execution</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Areas of expertise</p>
+    <div style="margin-top: 1.5rem; line-height: 2;">
+      <div>• Cross-functional Project Management</div>
+      <div>• Content Planning &amp; Coordination</div>
+      <div>• Meta Ads Campaign Management</div>
+      <div>• Customer Insights</div>
+    </div>
+  </div>
+  <div class="about-right fade-in">
+    <p class="section-eyebrow">Career</p>
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:600; margin-bottom:2rem; color:var(--navy);">Experience timeline</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Aug 2025 – Present</div>
+        <div class="tl-role">Sustainability Solution Specialist</div>
+        <div class="tl-org">Neyen Consulting SL</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Aug 2024 – Sep 2025</div>
+        <div class="tl-role">Marketing Branding Supervisor</div>
+        <div class="tl-org">PT Mom &amp; Jo</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Jan 2024 – Jul 2024</div>
+        <div class="tl-role">Senior Marketing Executive</div>
+        <div class="tl-org">Nippon Paint Indonesia</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Aug 2022 – Dec 2023</div>
+        <div class="tl-role">Marketing Executive — BTL</div>
+        <div class="tl-org">Nippon Paint Indonesia</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Mar 2022 – Aug 2022</div>
+        <div class="tl-role">Commercial Development Program</div>
+        <div class="tl-org">Nippon Paint Indonesia</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2017 – 2021</div>
+        <div class="tl-role">Bachelor of Biology — Cum Laude, GPA 3.57</div>
+        <div class="tl-org">Universitas Indonesia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-eyebrow">Get in touch</p>
+  <h2 class="section-title">Let's work together</h2>
+  <div class="divider"></div>
+  <p class="contact-sub">Open to consulting projects, full-time roles, and strategic collaborations in sustainability, business development, and marketing.</p>
+  <a href="mailto:evaniselsa@gmail.com" class="contact-cta">evaniselsa@gmail.com →</a>
+  <div class="contact-links">
+    <a href="tel:+6289622580177" class="contact-link">+62 896-2258-0177</a>
+    <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
+    <a href="#work" class="contact-link">Back to top</a>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-preview" id="modal-preview"></div>
+    <div class="modal-info">
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-note" id="modal-note"></div>
+      <div class="modal-actions" id="modal-actions"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Selsa Evani. Jakarta, Indonesia.</p>
+  <p>Strategic Growth &amp; Performance Marketing</p>
+</footer>
+
+<script>
+function toggleCase(id) {
+  const card = document.getElementById(id);
+  const body = document.getElementById(id + '-body');
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.case').forEach(c => c.classList.remove('open'));
+  document.querySelectorAll('.case-body').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { card.classList.add('open'); body.classList.add('open'); }
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const artifactFiles = {};
+
+function openModal(title, desc, type, mediaType) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-desc').textContent = desc;
+  const noteEl = document.getElementById('modal-note');
+  const previewEl = document.getElementById('modal-preview');
+  const actionsEl = document.getElementById('modal-actions');
+  if (type === 'confidential') {
+    noteEl.textContent = '🔒 This artifact contains sensitive information. Partner/client names have been anonymised. Full version available on request.';
+    noteEl.style.display = 'block';
+  } else if (type === 'upload') {
+    noteEl.textContent = '📎 Upload the actual file to your GitHub repository and update the file path in the code to display a real preview here.';
+    noteEl.style.display = 'block';
+  } else { noteEl.style.display = 'none'; }
+  const filePath = artifactFiles[title];
+  if (filePath && (mediaType === 'photo' || mediaType === 'chart' || mediaType === 'diagram')) {
+    previewEl.innerHTML = '<img src="' + filePath + '" alt="' + title + '">';
+  } else {
+    const icons = {
+      doc: '<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#C9A97A" stroke-width="1.2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
+      photo: '<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#C9A97A" stroke-width="1.2"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>',
+      chart: '<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#C9A97A" stroke-width="1.2"><path d="M3 3v18h18M7 16l4-4 4 4 4-4"/></svg>',
+      diagram: '<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#C9A97A" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>'
+    };
+    previewEl.innerHTML = '<div class="modal-preview-placeholder">' + (icons[mediaType] || icons.doc) + '<p>Upload your file to see a preview here</p></div>';
+  }
+  if (filePath) {
+    actionsEl.innerHTML = '<a href="' + filePath + '" download class="modal-btn modal-btn-primary">⬇ Download file</a><a href="' + filePath + '" target="_blank" class="modal-btn modal-btn-secondary">Open in new tab</a>';
+  } else {
+    actionsEl.innerHTML = '<button class="modal-btn modal-btn-primary" onclick="alert(\'Add your file path to the artifactFiles object in the script to enable downloads.\')">⬇ Download (not yet linked)</button><button class="modal-btn modal-btn-secondary" onclick="closeModal()">Close</button>';
+  }
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
