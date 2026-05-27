@@ -253,7 +253,7 @@
     height:55px;
   }
 }
-
+  
   /* CTA row */
   .hero-cta-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
   .hero-cta-primary {
@@ -312,6 +312,78 @@
     .hero-metrics-strip { grid-template-columns: repeat(2, 1fr); }
   }
 
+/* ═══════ TECH STACK SECTION ═══════ */
+#tech-stack {
+  padding: 2.25rem 4rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.tech-stack-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.tech-stack-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--slate-light);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  justify-content: center;
+}
+.tech-stack-label::before,
+.tech-stack-label::after {
+  content: '';
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: var(--border);
+}
+.tech-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+}
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--slate);
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+  cursor: default;
+}
+.tech-chip:hover {
+  border-color: rgba(15,118,110,0.35);
+  color: var(--teal);
+  box-shadow: 0 4px 12px rgba(15,118,110,0.08);
+  transform: translateY(-2px);
+}
+.tech-chip svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+@media (max-width: 900px) {
+  #tech-stack { padding: 2rem 2rem; }
+}
+  
   /* ═══════ ALL EXISTING SECTIONS ═══════ */
   section { padding: 6rem 4rem; }
   .section-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; color: var(--amber); text-transform: uppercase; margin-bottom: 1rem; }
@@ -523,7 +595,110 @@
 </section>
 <!-- ═══════ END HERO ═══════ -->
 
+<!-- ═══════ TECH STACK / TOOLS ═══════ -->
+<section id="tech-stack">
+  <div class="tech-stack-inner">
+    <span class="tech-stack-label">Tools &amp; Platforms</span>
+    <div class="tech-stack-row">
 
+      <!-- Meta Ads -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor" opacity=".7"/>
+        </svg>
+        Meta Ads Manager
+      </span>
+
+      <!-- HubSpot -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16.5" cy="7.5" r="2.5" stroke="currentColor" stroke-width="1.5" opacity=".9"/>
+          <path d="M14 7.5H9a3 3 0 0 0-3 3v0a3 3 0 0 0 3 3h2v3a3 3 0 0 0 3 3v0a3 3 0 0 0 3-3v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+          <circle cx="16.5" cy="7.5" r="1" fill="currentColor"/>
+        </svg>
+        HubSpot
+      </span>
+
+      <!-- SAP -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <path d="M6 12h3M6 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".85"/>
+          <path d="M13 10h2.5a1.5 1.5 0 0 1 0 3H13v-3zM13 13v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+        </svg>
+        SAP
+      </span>
+
+      <!-- Canva -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+        </svg>
+        Canva
+      </span>
+
+      <!-- Microsoft Excel -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <path d="M7 8l3 4-3 4M13 8h4M13 12h4M13 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+        </svg>
+        Microsoft Excel
+      </span>
+
+      <!-- PowerPoint -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <path d="M8 8h4a2 2 0 0 1 0 4H8V8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity=".9"/>
+          <path d="M8 16v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+        </svg>
+        PowerPoint
+      </span>
+
+      <!-- Notion -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+        </svg>
+        Notion
+      </span>
+
+      <!-- Google Workspace -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+        </svg>
+        Google Workspace
+      </span>
+
+      <!-- Email Marketing -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <path d="M2 8l10 7 10-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+        </svg>
+        Email Marketing
+      </span>
+
+      <!-- Instagram & TikTok -->
+      <span class="tech-chip">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" opacity=".9"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" opacity=".9"/>
+        </svg>
+        Instagram &amp; TikTok
+      </span>
+
+    </div>
+  </div>
+</section>
+<!-- ═══════ END TECH STACK ═══════ -->
+  
 <!-- WORK -->
 <section id="work">
   <div class="work-header fade-in">
@@ -673,6 +848,18 @@
   </div>
 </section>
 
+<!-- ═══════ DOWNLOAD CV BUTTON ═══════ -->
+<div class="download-cv-wrapper fade-in">
+  <a href="assets/My_Resume.pdf" download="Selsa_Evani_Resume.pdf" class="download-cv-btn">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v12M7 11l5 5 5-5"/>
+      <path d="M5 20h14" stroke-width="1.5"/>
+    </svg>
+    Download CV
+  </a>
+</div>
+<!-- ═══════ END DOWNLOAD CV ═══════ -->
+  
 <!-- ABOUT -->
 <section id="about">
   <div class="about-left fade-in">
