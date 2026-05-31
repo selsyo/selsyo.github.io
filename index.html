@@ -485,7 +485,106 @@
 
   footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; }
   footer p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
-
+/* ═══ NEYEN PORTFOLIO ASSETS ═══ */
+.neyen-portfolio {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+}
+.neyen-portfolio-header { margin-bottom: 2rem; }
+.neyen-portfolio-eyebrow {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--amber);
+  display: block; margin-bottom: 0.5rem;
+}
+.neyen-portfolio-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.neyen-portfolio-sub {
+  font-size: 0.85rem; color: var(--slate); line-height: 1.65; max-width: 540px;
+}
+.neyen-asset-group { margin-bottom: 2rem; }
+.neyen-asset-group-label {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 1rem;
+}
+.neyen-asset-group-label svg { width: 13px; height: 13px; flex-shrink: 0; }
+.neyen-video-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.neyen-video-card {
+  display: flex; gap: 1rem; align-items: center;
+  text-decoration: none;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.neyen-video-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 16px rgba(15,118,110,0.10);
+  transform: translateY(-2px);
+}
+.neyen-video-thumb {
+  position: relative; flex-shrink: 0;
+  width: 72px; height: 56px; border-radius: 6px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.neyen-play-btn {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center;
+}
+.neyen-play-btn svg { width: 12px; height: 12px; fill: var(--white); margin-left: 2px; }
+.neyen-video-badge {
+  position: absolute; top: 5px; right: 5px;
+  font-size: 0.55rem; font-weight: 600; letter-spacing: 0.06em;
+  background: var(--amber); color: var(--white);
+  padding: 1px 5px; border-radius: 3px;
+}
+.neyen-video-info { flex: 1; min-width: 0; }
+.neyen-video-title { font-size: 0.85rem; font-weight: 500; color: var(--navy); margin-bottom: 0.25rem; line-height: 1.35; }
+.neyen-video-meta { font-size: 0.72rem; color: var(--teal); font-weight: 500; }
+.neyen-flyer-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.neyen-flyer-card {
+  text-decoration: none;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  background: var(--surface);
+}
+.neyen-flyer-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 16px rgba(15,118,110,0.10);
+  transform: translateY(-3px);
+}
+.neyen-flyer-preview {
+  width: 100%; aspect-ratio: 3/4;
+  background: linear-gradient(135deg, var(--teal-light) 0%, #e6f4f3 100%);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.neyen-flyer-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.neyen-flyer-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.5rem; width: 100%; height: 100%;
+  color: var(--teal); opacity: 0.45;
+}
+.neyen-flyer-placeholder svg { width: 32px; height: 32px; }
+.neyen-flyer-placeholder span { font-size: 0.72rem; font-weight: 500; }
+.neyen-flyer-label {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.78rem; font-weight: 500; color: var(--navy);
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 700px) {
+  .neyen-video-row { grid-template-columns: 1fr; }
+  .neyen-flyer-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .neyen-flyer-row { grid-template-columns: 1fr; }
+}
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
@@ -748,7 +847,77 @@
         <div class="cb-image-box"><img src="https://selsyo.github.io/CASE-1.jpeg" alt="case 1"></div>
       </div>
     </div>
+<!-- ═══ NEYEN PORTFOLIO ASSETS ═══ -->
+<div class="neyen-portfolio">
+  <div class="neyen-portfolio-header">
+    <span class="neyen-portfolio-eyebrow">Creative Output</span>
+    <h4 class="neyen-portfolio-title">Campaign assets I produced for Neyen</h4>
+    <p class="neyen-portfolio-sub">From workshop promotion videos to event flyers — here's a look at the materials I built to drive awareness and registrations.</p>
+  </div>
 
+  <!-- Videos -->
+  <div class="neyen-asset-group">
+    <div class="neyen-asset-group-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Campaign Videos
+    </div>
+    <div class="neyen-video-row">
+      <a href="YOUR_VIDEO_LINK_1" target="_blank" rel="noopener" class="neyen-video-card">
+        <div class="neyen-video-thumb">
+          <div class="neyen-play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <span class="neyen-video-badge">Video 1</span>
+        </div>
+        <div class="neyen-video-info">
+          <div class="neyen-video-title">Workshop Promo — Campaign Video</div>
+          <div class="neyen-video-meta">Click to watch ↗</div>
+        </div>
+      </a>
+      <a href="YOUR_VIDEO_LINK_2" target="_blank" rel="noopener" class="neyen-video-card">
+        <div class="neyen-video-thumb">
+          <div class="neyen-play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <span class="neyen-video-badge">Video 2</span>
+        </div>
+        <div class="neyen-video-info">
+          <div class="neyen-video-title">Event Highlight Reel</div>
+          <div class="neyen-video-meta">Click to watch ↗</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Flyers -->
+  <div class="neyen-asset-group">
+    <div class="neyen-asset-group-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Event Flyers
+    </div>
+    <div class="neyen-flyer-row">
+      <a href="YOUR_FLYER_LINK_1" target="_blank" rel="noopener" class="neyen-flyer-card">
+        <div class="neyen-flyer-preview">
+          <img src="YOUR_FLYER_IMAGE_1" alt="Flyer 1">
+        </div>
+        <div class="neyen-flyer-label">Workshop Flyer 1</div>
+      </a>
+      <a href="YOUR_FLYER_LINK_2" target="_blank" rel="noopener" class="neyen-flyer-card">
+        <div class="neyen-flyer-preview">
+          <img src="YOUR_FLYER_IMAGE_2" alt="Flyer 2">
+        </div>
+        <div class="neyen-flyer-label">Workshop Flyer 2</div>
+      </a>
+      <a href="YOUR_FLYER_LINK_3" target="_blank" rel="noopener" class="neyen-flyer-card">
+        <div class="neyen-flyer-preview">
+          <img src="YOUR_FLYER_IMAGE_3" alt="Flyer 3">
+        </div>
+        <div class="neyen-flyer-label">Roundtable Event Flyer</div>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- ═══ END NEYEN PORTFOLIO ASSETS ═══ -->
     <div class="case fade-in" id="case2">
       <div class="case-header-row" onclick="toggleCase('case2')">
         <div class="case-num">02</div>
